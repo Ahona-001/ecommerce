@@ -3706,6 +3706,9 @@ img{ height:auto; }
    FINAL RESPONSIVE OVERRIDES v11
    (keeps layout fixed across image swaps)
    ============================== */
+/* ==============================
+   FINAL RESPONSIVE OVERRIDES v11
+   ============================== */
 
 /* Active indicator for TOP nav */
 .nav a{ position: relative; }
@@ -3718,7 +3721,7 @@ img{ height:auto; }
   height: 3px;
   border-radius: 999px;
   background: transparent;
-  opacity: .0;
+  opacity: 0;
   transform: translateY(4px);
   transition: opacity .18s ease, transform .18s ease, background .18s ease;
 }
@@ -3729,27 +3732,57 @@ img{ height:auto; }
   transform: translateY(0);
 }
 
-/* Bottom nav: keep underline only (no fill/gradient) */
+/* Bottom nav active state (no fill) */
 .bottom-nav a.is-active{
   background: transparent !important;
   box-shadow: none !important;
 }
-.bottom-nav a.is-active .ink{ background: rgba(79,70,229,.35) !important; }
+.bottom-nav a.is-active .ink{
+  background: rgba(79,70,229,.35) !important;
+}
 
-/* HERO: lock the visual/card size so changing images never changes layout */
+/* HERO image lock */
 .visual{ width: 100%; max-width: 560px; margin-inline: auto; }
 .product-frame--hero{
   width: min(520px, 100%);
   height: 520px;
-  aspect-ratio: auto;
 }
-.product-frame--hero img{ width:100%; height:100%; object-fit: contain; display:block; }
+.product-frame--hero img{
+  width:100%;
+  height:100%;
+  object-fit: contain;
+  display:block;
+}
 
 @media (max-width: 980px){
   .product-frame--hero{ height: min(78vw, 460px); }
 }
 @media (max-width: 560px){
   .product-frame--hero{ height: min(84vw, 430px); }
+}
+
+/* ==============================
+   NAV VISIBILITY CONTROL
+   ============================== */
+
+/* Desktop: hide bottom nav */
+.bottom-nav{
+  display: none;
+}
+
+/* Mobile only */
+@media (max-width: 768px){
+  /* hide top nav */
+  .nav{
+    display: none;
+  }
+
+  /* show bottom nav */
+  .bottom-nav{
+    display: block;
+    z-index: 9999;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
 }
 
 /* Gallery: always bottom-center, never wraps (desktop/tablet) */
