@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+   <meta name="theme-color" content="#55aacf">
+<title>MyMart — Single Product</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="styles.css" rel="stylesheet"/>
+<script>document.documentElement.classList.remove('no-js');</script>
+<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
+</head>
+<body>
+<!-- Topbar -->
+<header class="topbar">
+<div class="container topbar__inner">
+<a class="brand" href="#top">
+<!-- <span aria-hidden="true" class="brand__mark"></span>-->
+<!-- <span class="brand__name">MyMart test</span> -->
+ <img src="./assets/logo1.png" alt="MyMart Logo" class="brand-logo" />
+</a>
+<nav class="nav"><a href="#highlights" data-nav="highlights">Highlights</a>
+<a href="#usage" data-nav="usage">Usage</a>
+<a href="#benefits" data-nav="benefits">Benefits</a>
+<a href="#details" data-nav="details">Details</a>
+<a href="#order" data-nav="order">Order</a>
+<a href="#contact" data-nav="contact">Contact</a></nav>
+<div class="actions">
+<button aria-label="Open cart" class="icon-btn" id="openCartBtn" type="button">
+<span class="icon">🛒</span>
+<span class="count" id="cartCount">0</span>
+</button>
+</div>
+</div>
+</header>
+<!-- CART DRAWER -->
+<div aria-hidden="true" class="drawer-backdrop" id="drawerBackdrop"></div>
+<aside aria-label="Shopping cart" class="drawer" id="cartDrawer">
+<div class="drawer__head">
+<div>
+<div class="drawer__title">Your cart</div>
+<div class="drawer__sub">Delivery across Bangladesh</div>
+</div>
+<button aria-label="Close cart" class="icon-btn" id="closeCartBtn" type="button">
+<span class="icon">✕</span>
+</button>
+</div>
+<div class="drawer__body">
+<!-- Filled by JS -->
+<div id="cartItems"></div>
+<div class="divider"></div>
+<div class="summary" id="checkout">
+<div class="summary__row">
+<span>Subtotal</span>
+<span id="cartSubtotal">৳ 0</span>
+</div>
+<div class="summary__row">
+<span>Delivery</span>
+<span id="cartDelivery">৳ 0</span>
+</div>
+<div class="summary__row summary__row--total">
+<span>Total</span>
+<span id="cartTotal">৳ 0</span>
+</div>
+<a class="btn btn--primary btn--full" href="#order">Proceed to checkout</a>
+<div class="pay">
+<span class="pay__chip">Cash on Delivery</span>
+<span class="pay__chip">bKash</span>
+<span class="pay__chip">Nagad</span>
+<span class="pay__chip">Card</span>
+</div>
+<!-- (Removed extra note text to keep UI clean) -->
+</div>
+</div>
+</aside>
+<!-- HERO -->
+<div class="hero" id="top">
+<div class="container"><div class="hero__grid">
+<!-- Left -->
+<section class="hero__copy reveal">
+<p class="eyebrow"><span class="dot"></span> New stock • Limited offer</p>
+<h1 class="hero__title">
+          The Ordinary<br/>
+<span class="accent">Hair Density Serum</span>
+</h1>
+<p class="hero__text">
+          Lightweight, non‑greasy daily serum designed to support the look of thicker, fuller hair.
+          Choose your size, add to cart, and generate a downloadable invoice at checkout.
+        </p>
+<div class="hero__price">
+<div class="tag">Best value</div>
+<div class="money">
+<div class="money__now" id="priceNow">৳ 1,290</div>
+<div class="money__was" id="priceWas">৳ 1,590</div>
+</div>
+<div class="pill"><span class="pill__dot"></span> Dhaka: 24–48 hours</div>
+</div>
+<!-- Options -->
+<div class="options">
+<div class="opt">
+<div class="opt__k">Variant</div>
+<div class="chips">
+<input checked="" id="v1" name="variant" type="radio" value="30 ml"/>
+<label class="chip" for="v1">30 ml</label>
+<input id="v2" name="variant" type="radio" value="60 ml"/>
+<label class="chip" for="v2">60 ml</label>
+<input id="v3" name="variant" type="radio" value="2‑Pack"/>
+<label class="chip" for="v3">2‑Pack</label>
+</div>
+</div>
+</div>
+<!-- Buy bar -->
+<div class="buybar">
+<div aria-label="Quantity" class="stepper stepper--lg">
+<button aria-label="Decrease" class="stepper__btn" id="qtyMinus" type="button">−</button>
+<input class="stepper__input" id="qtyInput" min="1" type="number" value="1"/>
+<button aria-label="Increase" class="stepper__btn" id="qtyPlus" type="button">+</button>
+</div>
+<button class="btn btn--primary btn--cta" id="addToCartBtn" type="button">
+            Add to cart
+          </button>
+</div>
+<div class="hero__meta">
+<div class="meta">
+<div class="meta__k">Quality</div>
+<div class="meta__v">Checked before dispatch</div>
+</div>
+<div class="meta">
+<div class="meta__k">Returns</div>
+<div class="meta__v">7-day policy</div>
+</div>
+<div class="meta">
+<div class="meta__k">Support</div>
+<div class="meta__v">WhatsApp available</div>
+</div>
+</div>
+</section>
+<!-- Right -->
+<section aria-label="Product preview" class="hero__visual reveal">
+<div class="section-card hero__visualCard">
+<div class="visual">
+<div aria-hidden="true" class="blob blob--a"></div>
+<div aria-hidden="true" class="blob blob--b"></div>
+<div class="badge">
+<div class="badge__small">Save up to</div>
+<div class="badge__big">20%</div>
+</div>
+<figure class="product-frame product-frame--hero">
+<img alt="Main product image" id="mainImage" src="assets/11.png"/>
+</figure>
+<div aria-label="Gallery thumbnails" class="gallery">
+<button aria-label="Gallery 1" class="thumb2" data-img="assets/12.png" type="button">
+<img alt="Gallery 1" src="assets/12.png"/>
+</button>
+<button aria-label="Gallery 2" class="thumb2" data-img="assets/13.png" type="button">
+<img alt="Gallery 2" src="assets/13.png"/>
+</button>
+<button aria-label="Gallery 3" class="thumb2" data-img="assets/14.png" type="button">
+<img alt="Gallery 3" src="assets/14.png"/>
+</button>
+<button aria-label="Gallery 4" class="thumb2" data-img="assets/15.png" type="button">
+<img alt="Gallery 4" src="assets/15.png"/>
+</button>
+</div>
+</div>
+</div>
+</section>
+</div></div>
+</div>
+<!-- Partners -->
+<section class="partners main-section" id="highlights">
+<div class="container">
+<div class="split split--highlights reveal">
+<figure class="split__media">
+<div aria-hidden="true" class="media-plate"></div>
+<img alt="Product highlight" loading="lazy" src="assets/12.png"/>
+</figure>
+<div class="split__content">
+<div class="section-head">
+<h2 class="section-title">Highlights</h2>
+<p class="section-sub">Everything you need for a confident purchase—payment, delivery, and verified quality.</p>
+</div>
+<ul class="checklist" role="list">
+<li><span class="check">✓</span><span class="txt">Cash on Delivery available</span></li>
+<li><span class="check">✓</span><span class="txt">bKash / Nagad supported</span></li>
+<li><span class="check">✓</span><span class="txt">Fast courier delivery</span></li>
+<li><span class="check">✓</span><span class="txt">Verified quality check</span></li>
+<li><span class="check">✓</span><span class="txt">Easy returns policy</span></li>
+</ul>
+<div class="note-strip">
+<span class="pill">Trusted</span>
+<span class="pill">Fast</span>
+<span class="pill">Secure</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- USAGE / STORY (Split layout) -->
+<section class="usage main-section" id="usage">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="section-title">Usage &amp; product story</h2>
+      <p class="section-sub">Clean, professional layout—steps on one side, a focused visual on the other.</p>
+    </div>
+
+    <div class="usage-split reveal">
+        <div class="section-card usage__copy usage__copyCard">
+          <h3 class="usage__title">3 simple steps</h3>
+          <ol class="steps" role="list">
+            <li class="step">
+              <div class="step__no">1</div>
+              <div class="step__body">
+                <div class="step__k">Apply</div>
+                <div class="step__v">Use a few drops on a clean scalp. Massage gently for 30–60 seconds.</div>
+              </div>
+            </li>
+            <li class="step">
+              <div class="step__no">2</div>
+              <div class="step__body">
+                <div class="step__k">Leave in</div>
+                <div class="step__v">No rinse needed. Non‑greasy texture absorbs quickly.</div>
+              </div>
+            </li>
+            <li class="step">
+              <div class="step__no">3</div>
+              <div class="step__body">
+                <div class="step__k">Repeat daily</div>
+                <div class="step__v">Use once per day consistently for best results.</div>
+              </div>
+            </li>
+          </ol>
+
+          <div class="usage__micro">
+            <div class="micro">
+              <div class="micro__k">Payment</div>
+              <div class="micro__v">COD / bKash / Nagad</div>
+            </div>
+            <div class="micro">
+              <div class="micro__k">Delivery</div>
+              <div class="micro__v">Dhaka &amp; nationwide</div>
+            </div>
+            <div class="micro">
+              <div class="micro__k">Invoice</div>
+              <div class="micro__v">Download after checkout</div>
+            </div>
+          </div>
+<div class="usage__cta">
+            <button class="btn btn--primary" id="quickAdd1" type="button">Quick add</button>
+            <a class="btn btn--ghost" href="#order">Go to checkout</a>
+          </div>
+        </div>
+
+        <div class="section-card usage__media usage__mediaCard">
+          <div class="usage__bg" aria-hidden="true"></div>
+          <figure class="product-frame product-frame--show">
+            <img id="usageMain" src="assets/13.png" alt="Usage preview" loading="lazy"/>
+          </figure>
+        </div>
+      </div>
+  </div>
+</section>
+
+<!-- BENEFITS / HOW TO USE -->
+<section class="benefits main-section reveal" id="benefits">
+<div class="container">
+<div class="split split--benefits reveal">
+<div class="split__content">
+<div class="section-head">
+<h2 class="section-title">Benefits &amp; how to use</h2>
+<p class="section-sub">Clear value points customers look for—keep it short, scannable, and trustworthy.</p>
+</div>
+<div class="brows">
+<div class="brow">
+<div aria-hidden="true" class="brow__icon">✨</div>
+<div class="brow__body">
+<h3 class="brow__title">Visible results</h3>
+<p class="brow__text">Lightweight daily serum designed to support a fuller look without a greasy feel.</p>
+</div>
+</div>
+<div class="brow">
+<div aria-hidden="true" class="brow__icon">🧴</div>
+<div class="brow__body">
+<h3 class="brow__title">Easy routine</h3>
+<p class="brow__text">Apply a few drops to a clean scalp once per day. No rinse. Works with regular shampoo.</p>
+</div>
+</div>
+<div class="brow">
+<div aria-hidden="true" class="brow__icon">🛡️</div>
+<div class="brow__body">
+<h3 class="brow__title">Verified quality</h3>
+<p class="brow__text">Sealed packaging, checked before dispatch, with a simple 7‑day return flow.</p>
+</div>
+</div>
+<div class="brow">
+<div aria-hidden="true" class="brow__icon">🚚</div>
+<div class="brow__body">
+<h3 class="brow__title">Fast delivery</h3>
+<p class="brow__text">Dhaka &amp; nationwide delivery with tracking updates so customers feel confident.</p>
+</div>
+</div>
+</div>
+<div class="cta-row">
+<a class="btn btn--primary" href="#order">Order now</a>
+<a class="btn btn--ghost" href="#details">See ingredients</a>
+</div>
+</div>
+<figure class="split__media split__media--right">
+<div aria-hidden="true" class="media-plate"></div>
+<img alt="Benefits preview" loading="lazy" src="assets/14.png"/>
+<figcaption class="media-cap">Dermatology‑inspired, everyday friendly.</figcaption>
+</figure>
+</div>
+</div>
+</section>
+</section>
+<!-- DETAILS -->
+<section class="details reveal main-section" id="details">
+<div class="container details__grid">
+<div class="details__left">
+<h2 class="section-title">Product description</h2>
+<p class="section-sub">
+          The Ordinary Hair Density Serum is a lightweight, scalp-friendly formula designed for everyday use.
+        </p>
+<div class="desc reveal">
+<p>
+            A leave‑in serum that targets the look of thicker, fuller hair over time. The texture is non‑greasy,
+            absorbs quickly, and layers well with your regular routine.
+          </p>
+<ul class="bullets">
+<li>Daily, lightweight leave‑in use</li>
+<li>Choose 30 ml, 60 ml, or a bundle pack</li>
+<li>7‑day easy return (unused items)</li>
+<li>Delivery across Bangladesh</li>
+</ul>
+</div>
+</div>
+<div class="details__right">
+<div class="specbox reveal">
+<h3>Quick specs</h3>
+<div class="specrow"><span>Category</span><span>Hair Care</span></div>
+<div class="specrow"><span>Size</span><span>30 ml / 60 ml / 2‑Pack</span></div>
+<div class="specrow"><span>Stock</span><span>Available</span></div>
+<div class="divider"></div>
+<div class="deal">
+<div class="deal__k">Today’s offer</div>
+<div class="deal__v" id="sidePrice">৳ 1,290</div>
+<div class="deal__s">Authentic product • Sealed packaging</div>
+</div>
+<button class="btn btn--primary btn--full" id="quickAdd2" type="button">Add to cart</button>
+<a class="btn btn--ghost btn--full" href="#contact">Need help? Contact us</a>
+</div>
+</div>
+</div>
+</section>
+<!-- CHECKOUT / ORDER -->
+<section class="order main-section" id="order">
+<div aria-hidden="true" class="section-decor">
+<img alt="" class="decor decor--order1" src="assets/13.png"/>
+<img alt="" class="decor decor--order2" src="assets/15.png"/>
+</div>
+<div class="container order__grid">
+<div class="order__left">
+<h2 class="section-title">Place your order</h2>
+<p class="section-sub">Enter details, pick delivery zone, and generate your invoice.</p>
+<form class="formcard reveal" id="orderForm">
+<div class="formgrid">
+<div class="field">
+<label for="fullName">Full name</label>
+<input id="fullName" placeholder="Full name" required="" type="text"/>
+</div>
+<div class="field">
+<label for="phone">Phone number</label>
+<input id="phone" placeholder="01XXXXXXXXX" required="" type="tel"/>
+</div>
+<div class="field field--full">
+<label for="address">Full address</label>
+<textarea id="address" placeholder="House, road, area, district" required="" rows="2"></textarea>
+</div>
+<div class="field">
+<label for="deliveryZone">Delivery zone</label>
+<select id="deliveryZone" required="">
+<option selected="" value="inside">Inside Dhaka (৳ 60)</option>
+<option value="outside">Outside Dhaka (৳ 120)</option>
+</select>
+</div>
+<div class="field">
+<label for="paymentMethod">Payment method</label>
+<select id="paymentMethod" required="">
+<option selected="" value="COD">Cash on Delivery</option>
+<option value="bKash">bKash</option>
+<option value="Nagad">Nagad</option>
+<option value="Card">Card</option>
+</select>
+</div>
+</div>
+<div class="formactions">
+<button class="btn btn--primary" type="submit">Generate invoice</button>
+<button class="btn btn--ghost" id="clearCartBtn" type="button">Clear cart</button>
+</div>
+</form>
+</div>
+<div class="order__right">
+<div class="receipt reveal">
+<div class="receipt__top">
+<div>
+<div class="receipt__title">Order summary</div>
+<div class="receipt__sub">BDT currency • Bangladesh delivery</div>
+</div>
+<span class="badge2" id="receiptBadge">Ready</span>
+</div>
+<div class="receipt__items" id="receiptItems"></div>
+<div class="divider"></div>
+<div class="receipt__row">
+<span>Subtotal</span>
+<span id="rSubtotal">৳ 0</span>
+</div>
+<div class="receipt__row">
+<span>Delivery</span>
+<span id="rDelivery">৳ 60</span>
+</div>
+<div class="receipt__row receipt__row--total">
+<span>Total</span>
+<span id="rTotal">৳ 0</span>
+</div>
+<div class="divider"></div>
+<div class="receipt__btns">
+<button class="btn btn--primary btn--full" disabled="" id="downloadInvoiceBtn" type="button">
+              Download invoice (PDF)
+            </button>
+<button class="btn btn--ghost btn--full" id="viewInvoiceBtn" type="button">
+              View invoice
+            </button>
+<button class="btn btn--ghost btn--full" id="openCartFromSummary" type="button">
+            Review cart
+          </button>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ORDER DELIVERY (merged) -->
+<div class="order-delivery" id="delivery">
+
+<div class="container">
+<h3 class="sub-title">Delivery &amp; returns</h3>
+<div aria-hidden="true" class="section-decor">
+<img alt="" class="decor decor--ship1" src="assets/12.png"/>
+<img alt="" class="decor decor--ship2" src="assets/14.png"/>
+</div>
+<div class="panel panel--soft reveal">
+<div class="shipgrid">
+<article class="shipcard reveal">
+<div class="shipcard__icon">🚚</div>
+<h3>Inside Dhaka</h3>
+<p>Delivery in <b>24–48 hours</b>. Delivery charge: <b>৳ 60</b>.</p>
+</article>
+<article class="shipcard reveal">
+<div class="shipcard__icon">📦</div>
+<h3>Outside Dhaka</h3>
+<p>Delivery in <b>2–5 business days</b>. Delivery charge: <b>৳ 120</b>.</p>
+</article>
+<article class="shipcard reveal">
+<div class="shipcard__icon">↩</div>
+<h3>Returns / exchange</h3>
+<p><b>7‑day</b> easy return for unused items with original packaging (adjust your policy).</p>
+</article>
+</div>
+<div class="payrow">
+<span class="paychip">Cash on Delivery</span>
+<span class="paychip">bKash</span>
+<span class="paychip">Nagad</span>
+</div>
+</div>
+</div>
+
+</div>
+
+</section>
+<div class="section-divider" aria-hidden="true"></div>
+<!-- CONTACT -->
+<section class="contact main-section" id="contact">
+<div aria-hidden="true" class="section-decor">
+<img alt="" class="decor decor--contact1" src="assets/12.png"/>
+<img alt="" class="decor decor--contact2" src="assets/14.png"/>
+</div>
+<div class="container contact__grid">
+<div class="contact__copy">
+<h2 class="section-title">Contact us</h2>
+<p class="section-sub">Need help with order, delivery, or product info? Reach us anytime.</p>
+<div class="contactchips">
+<a class="contactchip" href="#" id="contactWhatsApp" rel="noreferrer" target="_blank">WhatsApp chat</a>
+<a class="contactchip" href="mailto:support@mymart.com">Email: support@mymart.com</a>
+<a class="contactchip" href="tel:+8801XXXXXXXXX">Call: +8801XXXXXXXXX</a>
+</div>
+<div class="formcard reveal messagecard">
+<h3>Send a message</h3>
+<form class="formgrid" id="contactForm" onsubmit="return false;">
+<div class="field field--full">
+<input aria-label="Your name" placeholder="Your name" type="text"/>
+</div>
+<div class="field field--full">
+<input aria-label="Your email" placeholder="Your email" type="email"/>
+</div>
+<div class="field field--full">
+<textarea aria-label="Your message" placeholder="Your message" rows="3"></textarea>
+</div>
+<div class="formactions">
+<button class="btn btn--primary" type="button">Send message</button>
+</div>
+</form>
+</div>
+</div>
+<div class="contact__side">
+<div class="info reveal">
+<div class="info__title">Store info</div>
+<div class="info__row"><span>Delivery</span><span>All Bangladesh</span></div>
+<div class="info__row"><span>Inside Dhaka</span><span>৳ 60</span></div>
+<div class="info__row"><span>Outside Dhaka</span><span>৳ 120</span></div>
+<div class="info__row"><span>Support</span><span>WhatsApp</span></div>
+</div>
+<div class="helpbox reveal">
+<div class="helpbox__title">Support &amp; hours</div>
+<div class="helpbox__row"><span>Response time</span><span>15–60 min</span></div>
+<div class="helpbox__row"><span>Business hours</span><span>10:00–22:00</span></div>
+<div class="helpbox__row"><span>Order updates</span><span>WhatsApp</span></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="footer">
+<div class="container footer__grid">
+<div class="footer__brand">
+<a aria-label="MyMart home" class="brand brand--small" href="#top">
+ <img src="./assets/logo1.png" alt="MyMart Logo" class="brand-logo" />
+
+</a>
+<p class="fine">A Bangladesh‑ready single product landing template. Swap colors, logo, and sections to create your own theme.</p>
+<div aria-label="Social links" class="footer__social">
+<a aria-label="Facebook" class="social" href="https://facebook.com/" rel="noopener noreferrer" target="_blank">f</a>
+<a aria-label="Instagram" class="social" href="https://instagram.com/" rel="noopener noreferrer" target="_blank">⌁</a>
+<a aria-label="YouTube" class="social" href="https://youtube.com/" rel="noopener noreferrer" target="_blank">▶</a>
+</div>
+</div>
+<div class="footer__links">
+<div class="footer__title">Quick links</div>
+<a href="#details" data-nav="details">Product details</a>
+<a href="#order" data-nav="order">Order &amp; delivery</a>
+<a href="#order" data-nav="order">Place order</a>
+<a href="#contact" data-nav="contact">Contact</a>
+</div>
+<div class="footer__meta">
+<div class="footer__title">Payments</div>
+<div class="payrow payrow--footer">
+<span class="paychip">Cash on Delivery</span>
+<span class="paychip">bKash</span>
+<span class="paychip">Nagad</span>
+</div>
+<div class="footer__title">Support</div>
+<div class="footer__small">WhatsApp: +8801XXXXXXXXX<br/>Email: support@mymart.com</div>
+</div>
+</div>
+<div class="container footer__bottom">
+<span>© 2026 MyMart</span>
+<span class="muted">Built for mobile &amp; desktop • Theme‑ready</span>
+</div>
+</footer>
+<!-- INVOICE MODAL -->
+<div aria-hidden="true" class="modal" id="invoiceModal">
+  <div class="modal__backdrop" id="invoiceModalBackdrop"></div>
+
+  <div class="modal__panel" role="dialog" aria-modal="true">
+
+    <!-- HEADER -->
+    <div class="modal__head">
+      <img src="assets/logo1.png" alt="MyMart Logo" class="invoice-logo">
+
+      <div class="modal__headText">
+        <div class="modal__title">Invoice preview</div>
+        <div class="modal__sub" id="invoiceModalSub">Ready to view</div>
+      </div>
+
+      <button aria-label="Close" class="icon-btn" id="closeInvoiceModal" type="button">
+        ✕
+      </button>
+    </div>
+
+    <!-- BODY -->
+    <div class="modal__body" id="invoicePreview"></div>
+
+    <!-- FOOTER -->
+    <div class="modal__foot">
+      <button class="btn btn--ghost" id="printInvoiceBtn" type="button">Print</button>
+      <button class="btn btn--primary" id="downloadInvoiceFromModal" type="button">
+        Download PDF
+      </button>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- jsPDF (for invoice download) -->
+<script defer="" src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+<script defer="" src="app.js"></script>
+
+  <!-- Mobile bottom navigation -->
+<nav class="bottom-nav" aria-label="Mobile navigation">
+  <div class="bottom-nav__grid">
+
+    <!-- Highlights -->
+    <a href="#highlights" data-nav="highlights" aria-label="Highlights">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M4 13h6V4H4v9zm10 7h6V11h-6v9zM4 20h6v-5H4v5zm10-9h6V4h-6v7z"/>
+      </svg>
+      <span>Highlights</span>
+    </a>
+
+    <!-- Usage -->
+    <a href="#usage" data-nav="usage" aria-label="Usage">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 2v20M2 12h20"/>
+      </svg>
+      <span>Usage</span>
+    </a>
+
+    <!-- Benefits -->
+    <a href="#benefits" data-nav="benefits" aria-label="Benefits">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M20 6L9 17l-5-5"/>
+      </svg>
+      <span>Benefits</span>
+    </a>
+
+    <!-- Details -->
+    <a href="#details" data-nav="details" aria-label="Details">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M4 19.5A2.5 2.5 0 0 0 6.5 22h11A2.5 2.5 0 0 0 20 19.5v-15A2.5 2.5 0 0 0 17.5 2h-11A2.5 2.5 0 0 0 4 4.5v15z"/>
+        <path d="M8 7h8M8 11h8M8 15h6"/>
+      </svg>
+      <span>Details</span>
+    </a>
+
+    <!-- Order -->
+    <a href="#order" data-nav="order" aria-label="Order">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M6 6h15l-1.5 9h-13z"/>
+        <path d="M6 6l-2-2H1"/>
+        <circle cx="9" cy="20" r="1"/>
+        <circle cx="18" cy="20" r="1"/>
+      </svg>
+      <span>Order</span>
+    </a>
+
+    <!-- Contact -->
+    <a href="#contact" data-nav="contact" aria-label="Contact">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.08 4.18 2 2 0 0 1 4.06 2h3a2 2 0 0 1 2 1.72c.13.96.33 1.9.6 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.12a2 2 0 0 1 2.11-.45c.91.27 1.85.47 2.81.6A2 2 0 0 1 22 16.92z"/>
+      </svg>
+      <span>Contact</span>
+    </a>
+
+  </div>
+</nav>
+
+</body>
+</html>
